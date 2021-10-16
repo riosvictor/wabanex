@@ -5,7 +5,13 @@ defmodule Wabanex.UserTest do
 
   describe "changeset/1" do
     test "when all params are valid, returns a valid changeset" do
-      params = %{name: "Paulo", email: "paulo@abacaxi.com", password: "password"}
+      params = %{
+        name: "Paulo",
+        email: "paulo@abacaxi.com",
+        password: "password",
+        height: 1.7,
+        weight: 69
+      }
 
       response = User.changeset(params)
 
@@ -23,7 +29,9 @@ defmodule Wabanex.UserTest do
 
       expected_response = %{
         name: ["should be at least 2 character(s)"],
-        password: ["can't be blank"]
+        password: ["can't be blank"],
+        height: ["can't be blank"],
+        weight: ["can't be blank"]
       }
 
       assert errors_on(response) == expected_response

@@ -27,6 +27,6 @@ defmodule Wabanex.Users.Get do
     query = from training in Training,
       where: ^today >= training.start_date and ^today <= training.end_date
 
-    Repo.preload(user, trainings: {first(query, :inserted_at), :exercises})
+    Repo.preload(user, trainings: {last(query, :inserted_at), :exercises})
   end
 end
