@@ -1,0 +1,24 @@
+{
+  "skip_files": [
+    "test/support/*",
+    "deps/*",
+    "lib/wabanex.ex",
+    "lib/wabanex_web.ex",
+    "lib/wabanex/application.ex",
+    "lib/wabanex/repo.ex",
+    "lib/wabanex_web/channels/*",
+    "lib/wabanex_web/endpoint.ex",
+    "lib/wabanex_web/gettext.ex",
+    "lib/wabanex_web/telemetry.ex",
+    "lib/wabanex_web/router.ex",
+    "lib/wabanex_web/schema/types/custom/uuid4.ex",
+    "lib/wabanex_web/schema/types/root.ex",
+    "lib/wabanex_web/views/error_helpers.ex"
+  ],
+  "terminal_options": {
+    "file_column_width": 60
+  },
+  "coverage_options": {
+    "minimum_coverage": 80
+  }
+}

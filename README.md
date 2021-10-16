@@ -23,6 +23,8 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 Cria a migration com o comando:
  . mix ecto.gen.migration {name}
+Roda a migration com o comando:
+ . mix ecto.migrate
 Cria o schema em 'wabanex', com nome no singular
 Cria uma pasta em 'wabanex' no plural com os arquivos que representam as funções (get, create, delete, update)
 
@@ -43,17 +45,17 @@ Informações importantes:
 
 ///
 
-Criar novos campos no usuario como:
- - altura: number
- - peso: number
- - indice de gordura: number
- - indice muscular: number
+Criar novos campos no usuário como:
+ - height: float
+ - weight: float
+ - fat_index: float, default: 0
+ - muscle_index: float, default: 0
+ (alter table, add column)
 
- (alter table, create column)
-
-Criar mutations para deleção e alteração dos usuarios e treinos
+Criar mutations para remoção e alteração dos usuários e treinos
  (Repo delete e Repo update)
 
 Cobrir todos os testes restantes
  - mix test --cover
  - excoveralls (lib)
+ - run on terminal: MIX_ENV=test mix coveralls.html
