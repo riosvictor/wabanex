@@ -51,11 +51,12 @@ Criar novos campos no usuário como:
  - fat_index: float, default: 0
  - muscle_index: float, default: 0
  (alter table, add column)
+ - DONE
 
 Criar mutations para remoção e alteração dos usuários e treinos
  (Repo delete e Repo update)
+ - PENDING
 
-Cobrir todos os testes restantes
- - mix test --cover
- - excoveralls (lib)
+ - Cobrir todos os testes restantes (PENDING)
+ - add lib excoveralls (DONE)
  - run on terminal: MIX_ENV=test mix coveralls.html
