@@ -2,7 +2,7 @@ defmodule WabanexWeb.SchemaTest do
   use WabanexWeb.ConnCase, async: true
 
   alias Wabanex.User
-  alias Wabanex.Users.Create
+  alias Wabanex.Users
 
   describe "users queries" do
     test "when a valid id is given, returns the user", %{conn: conn} do
@@ -14,7 +14,7 @@ defmodule WabanexWeb.SchemaTest do
         weight: 91
       }
 
-      {:ok, %User{id: user_id}} = Create.call(params)
+      {:ok, %User{id: user_id}} = Users.Create.call(params)
 
       query = """
         {
@@ -95,6 +95,49 @@ defmodule WabanexWeb.SchemaTest do
       assert %{
                "data" => %{
                  "createUser" => %{"email" => "paulo@abacaxi.com", "id" => _id, "name" => "Paulo"}
+               }
+             } = response
+    end
+  end
+
+  describe "training mutations" do
+    test "when all params are valid, creates the training", %{conn: conn} do
+      params = %{
+        name: "Paulo",
+        email: "paulo@abacaxi.com",
+        password: "password",
+        height: 1.45,
+        weight: 91
+      }
+
+      {:ok, %User{id: user_id}} = Users.Create.call(params)
+
+      mutation = """
+        mutation {
+          createTraining(input: {
+            start_date: "2021-10-19",
+            end_date: "2021-10-29",
+            user_id: "#{user_id}"
+          }){
+            id
+            start_date
+            end_date
+          }
+        }
+      """
+
+      response =
+        conn
+        |> post("/api/graphql", %{query: mutation})
+        |> json_response(:ok)
+
+      assert %{
+               "data" => %{
+                 "createTraining" => %{
+                   "id" => _id,
+                   "end_date" => "2021-10-29",
+                   "start_date" => "2021-10-19"
+                 }
                }
              } = response
     end
